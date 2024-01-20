@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -107,7 +109,7 @@ class VideoActionsWidget extends StatelessWidget {
                   size: 30,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               InkWell(
                 onTap: onCommentTapped,
                 child: const Icon(
@@ -128,9 +130,10 @@ class VideoActionsWidget extends StatelessWidget {
               const SizedBox(height: 10),
               InkWell(
                 onTap: onShareTapped,
-                child: const RotatedBox(
-                  quarterTurns: 3,
-                  child: Icon(
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(math.pi),
+                  child: const Icon(
                     CupertinoIcons.reply,
                     color: Colors.white,
                     size: 30,

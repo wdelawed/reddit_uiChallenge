@@ -22,95 +22,105 @@ class VideoActionsRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Row(
-          children: [
-            InkWell(
-              onTap: onUpVote,
-              child: Icon(
-                upvoted
-                    ? CupertinoIcons.arrow_up_square_fill
-                    : CupertinoIcons.arrow_up_square,
-                color: upvoted ? primary : Colors.grey,
-                size: iconSize,
-              ),
-            ),
-            const SizedBox(width: 4),
-            Text(
-              "987",
-              style: TextStyle(
-                color: upvoted
-                    ? primary
-                    : downvoted
-                        ? secondary
-                        : Colors.grey,
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                height: 2.2,
-              ),
-            ),
-            const SizedBox(width: 4),
-            InkWell(
-              onTap: onDownVote,
-              child: Icon(
-                downvoted
-                    ? CupertinoIcons.arrow_down_square_fill
-                    : CupertinoIcons.arrow_down_square,
-                color: downvoted ? secondary : Colors.grey,
-                size: iconSize,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 16),
-        Row(
-          children: [
-            InkWell(
-              onTap: onCommentTapped,
-              child: Icon(
-                CupertinoIcons.conversation_bubble,
-                color: Colors.grey,
-                size: iconSize,
-              ),
-            ),
-            const SizedBox(width: 8),
-            const Text(
-              "100",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                height: 2,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 10),
-        Row(
-          children: [
-            InkWell(
-              onTap: onShareTapped,
-              child: Icon(
-                CupertinoIcons.reply,
-                color: Colors.grey,
-                size: iconSize,
-              ),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              "Share",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                height: 2,
-              ),
-            ),
-          ],
-        ),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: onUpVote,
+                      child: Icon(
+                        upvoted
+                            ? CupertinoIcons.arrow_up_square_fill
+                            : CupertinoIcons.arrow_up_square,
+                        color: upvoted ? primary : Colors.grey,
+                        size: iconSize,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      "987",
+                      style: TextStyle(
+                        color: upvoted
+                            ? primary
+                            : downvoted
+                                ? secondary
+                                : Colors.grey,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        height: 2.2,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    InkWell(
+                      onTap: onDownVote,
+                      child: Icon(
+                        downvoted
+                            ? CupertinoIcons.arrow_down_square_fill
+                            : CupertinoIcons.arrow_down_square,
+                        color: downvoted ? secondary : Colors.grey,
+                        size: iconSize,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 16),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: onCommentTapped,
+                      child: Icon(
+                        CupertinoIcons.conversation_bubble,
+                        color: Colors.grey,
+                        size: iconSize,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Text(
+                      "100",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        height: 2,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: onShareTapped,
+                      child: Icon(
+                        CupertinoIcons.reply,
+                        color: Colors.grey,
+                        size: iconSize,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Text(
+                      "Share",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        height: 2,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )),
+        Divider(
+          thickness: 1,
+          color: Colors.grey.shade200,
+        )
       ],
     );
   }

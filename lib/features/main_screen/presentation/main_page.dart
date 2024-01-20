@@ -57,6 +57,7 @@ class MainPage extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     controller: viewModel.state.mainPageController,
                     onPageChanged: (index) {
+                      viewModel.setSelectedPapgeIndex(index);
                       context
                           .read<VideoPlayerProvider>()
                           .setCurrentVideo(index);

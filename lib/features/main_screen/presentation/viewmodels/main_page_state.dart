@@ -5,6 +5,7 @@ import 'package:reddit_ui_challenge/shared/data/failure_model.dart';
 
 class MainPageState {
   PageController mainPageController = PageController();
+  int selectedPagIndex = 0;
   LoadState loadVideosState = LoadState.loading;
   LoadVideosParameters params = const LoadVideosParameters(page: 1, perPage: 3);
   List<RedditVideoEntity> videos = [];

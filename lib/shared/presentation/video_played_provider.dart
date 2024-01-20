@@ -16,13 +16,34 @@ class VideoPlayerProvider extends ChangeNotifier {
               playStatus: VideoPlayStatus.loading,
             ))
         .toList();
-    setCurrentVideo(0);
-    notifyListeners();
+    // try {
+    //   await states[0].videoPlayerController.initialize();
+    //   states[0].playStatus = VideoPlayStatus.loadingSuccess;
+    //   setCurrentVideo(0);
+    // } catch (e) {
+    //   states[0].playStatus = VideoPlayStatus.loadingfailed;
+    //   notifyListeners();
+    //   setCurrentVideo(0);
+    // }
+
     for (int i = 0; i < videos.length; i++) {
       try {
         await states[i].videoPlayerController.initialize();
-        states[i].playStatus = VideoPlayStatus.loadingSuccess;
+
+        states[i].videoPlayerController.setVolume(1);
+        soundEnabled = true;
         notifyListeners();
+        if (i == 0) {
+          setCurrentVideo(0);
+          // await Future.delayed(const Duration(milliseconds: 2000));
+          states[i].playStatus = VideoPlayStatus.loadingSuccess;
+          playVideo(states[i].video.id);
+          notifyListeners();
+        } else {
+          states[i].playStatus = VideoPlayStatus.loadingSuccess;
+          notifyListeners();
+        }
+
         states[i].videoPlayerController.addListener(() {
           onUpdate(i, states[i]);
         });
@@ -44,7 +65,7 @@ class VideoPlayerProvider extends ChangeNotifier {
       pauseVideo(currentVideoState!.video.id);
     }
     currentVideoState = states[index];
-    // notifyListeners();
+    notifyListeners();
   }
 
   void toggleSound() {

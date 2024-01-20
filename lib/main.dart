@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => di<VideoPlayerProvider>()),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (_) => di<VideoPlayerProvider>(),
+        ),
         ChangeNotifierProvider(
           create: (_) =>
               di<MainPageViewModel>()..loadVideos(di<VideoPlayerProvider>()),
@@ -36,6 +39,8 @@ class MyApp extends StatelessWidget {
             case "comments":
               return Routing.createRoute(VideoCommentsPage(
                 videoState: settings.arguments as VideoState,
+                fullWidth: MediaQuery.of(context).size.width,
+                fullHeight: MediaQuery.of(context).size.height,
               ));
           }
           return null;

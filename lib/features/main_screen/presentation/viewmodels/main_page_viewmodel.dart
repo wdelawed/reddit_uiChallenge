@@ -33,6 +33,11 @@ class MainPageViewModel extends ChangeNotifier {
     });
   }
 
+  void setSelectedPapgeIndex(int pageIndex) {
+    state.selectedPagIndex = pageIndex;
+    notifyListeners();
+  }
+
   void upvoteVideo(int videoId, int index) async {
     //simulate video upvoting
     state.upVoteVideoStatus = LoadState.loading;

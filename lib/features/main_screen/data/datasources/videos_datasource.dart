@@ -2,12 +2,12 @@ class VideosDataSource {
   Future<List<Map<String, dynamic>>> getVideos() async {
     Future.delayed(const Duration(seconds: 1));
     return [
-      video1,
       video2,
-      video1.map((key, value) => MapEntry(key, key == "id" ? 3 : value)),
-      video2.map((key, value) => MapEntry(key, key == "id" ? 4 : value)),
-      video1.map((key, value) => MapEntry(key, key == "id" ? 5 : value)),
-      video2.map((key, value) => MapEntry(key, key == "id" ? 6 : value)),
+      video1,
+      video2.map((key, value) => MapEntry(key, key == "id" ? 3 : value)),
+      video1.map((key, value) => MapEntry(key, key == "id" ? 4 : value)),
+      video2.map((key, value) => MapEntry(key, key == "id" ? 5 : value)),
+      video1.map((key, value) => MapEntry(key, key == "id" ? 6 : value)),
     ];
   }
 }
@@ -56,6 +56,46 @@ final comment2 = {
   "replys": [],
 };
 
+final comment3 = {
+  "id": 100,
+  "text": "With less than 100k monthly is going to be very hard to survive",
+  "dateTime": DateTime.now().toString(),
+  "author": userOne,
+  "upvotes": 3,
+  "downvotes": 10,
+  "replys": [
+    {
+      "id": 102,
+      "text": "With less than 100k monthly is going to be very hard to survive",
+      "dateTime": DateTime.now().toString(),
+      "author": userOne,
+      "upvotes": 3,
+      "downvotes": 10,
+      "replys": [],
+    },
+    {
+      "id": 103,
+      "text": "With less than 100k monthly is going to be very hard to survive",
+      "dateTime": DateTime.now().toString(),
+      "author": userOne,
+      "upvotes": 3,
+      "downvotes": 10,
+      "replys": [
+        {
+          "id": 101,
+          "text":
+              "With less than 100k monthly is going to be very hard to survive",
+          "dateTime": DateTime.now().toString(),
+          "author": userOne,
+          "upvotes": 3,
+          "downvotes": 10,
+          "replys": [],
+        }
+      ],
+    }
+  ],
+};
+
 final video1 = {
   "id": 1,
   "groupLogo":
@@ -63,6 +103,7 @@ final video1 = {
   "groupName": "HelloAvatar",
   "user": userOne,
   "comments": [
+    comment3,
     comment1,
     comment2,
     comment2.map((key, value) => MapEntry(key, key == "id" ? 3 : value)),
@@ -89,7 +130,10 @@ final video2 = {
   "comments": [
     comment2.map((key, value) => MapEntry(key, key == "id" ? 7 : value)),
     comment1.map((key, value) => MapEntry(key, key == "id" ? 8 : value)),
-    comment1.map((key, value) => MapEntry(key, key == "id" ? 9 : value)),
+    comment1.map((key, value) => MapEntry(
+          key,
+          key == "id" ? 9 : value,
+        )),
     comment2.map((key, value) => MapEntry(key, key == "id" ? 10 : value)),
     comment2.map((key, value) => MapEntry(key, key == "id" ? 11 : value)),
     comment1.map((key, value) => MapEntry(key, key == "id" ? 12 : value)),

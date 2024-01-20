@@ -38,32 +38,51 @@ class _RedditVideoWidgetState extends State<RedditVideoWidget> {
           children: [
             Hero(
               tag: "Video",
-              child: Align(
-                alignment: Alignment.center,
-                child: widget.videoState.playStatus == VideoPlayStatus.loading
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 1,
-                        ),
-                      )
-                    : widget.videoState.playStatus ==
-                            VideoPlayStatus.loadingfailed
-                        ? const Center(
-                            child: Text("Failed to Play Video"),
-                          )
-                        : SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.width /
-                                widget.videoState.videoPlayerController.value
-                                    .aspectRatio,
-                            child: VideoPlayer(
-                              widget.videoState.videoPlayerController,
-                              key: videoPlayerKey,
-                            ),
+              child: Consumer<VideoPlayerProvider>(
+                  builder: (context, videoPlayerProvider, child) {
+                final currentVideo = videoPlayerProvider.currentVideoState;
+                if (currentVideo == null) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1,
+                    ),
+                  );
+                }
+                return Align(
+                  alignment: Alignment.center,
+                  child: currentVideo.playStatus == VideoPlayStatus.loading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1,
                           ),
-              ),
+                        )
+                      : currentVideo.playStatus == VideoPlayStatus.loadingfailed
+                          ? const Center(
+                              child: Text(
+                                "Failed to Play Video",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          : SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.width /
+                                      currentVideo.videoPlayerController.value
+                                          .aspectRatio,
+                                  child: VideoPlayer(
+                                    currentVideo.videoPlayerController,
+                                    key: videoPlayerKey,
+                                  ),
+                                ),
+                              ),
+                            ),
+                );
+              }),
             ),
-            //video here
             SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
